@@ -1,15 +1,59 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="container">
+    <Header title="Task Tracker" />
+    <Tasks
+      @toggle-reminder="toggleReminder"
+      @delete-task="deleteTask"
+      :tasks="tasks"
+    />
+  </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from "./components/Header";
+import Tasks from "./components/Tasks";
 
 export default {
   name: "App",
-  components: {
-    HelloWorld,
+  components: { Header, Tasks },
+  data() {
+    return {
+      tasks: [],
+    };
+  },
+  methods: {
+    deleteTask(id) {
+      if (confirm("Are you sure?")) {
+        this.tasks = this.tasks.filter((task) => task.id !== id);
+      }
+    },
+    toggleReminder(id) {
+      this.tasks = this.tasks.map((task) =>
+        task.id === id ? { ...task, reminder: !task.reminder } : task
+      );
+    },
+  },
+  created() {
+    this.tasks = [
+      {
+        id: 1,
+        text: "I am your first task",
+        day: "14th July, 1pm",
+        reminder: true,
+      },
+      {
+        id: 2,
+        text: "I am your second task",
+        day: "28th July, 3pm",
+        reminder: true,
+      },
+      {
+        id: 3,
+        text: "I am your third task",
+        day: "09th August, 9am",
+        reminder: false,
+      },
+    ];
   },
 };
 </script>
@@ -19,8 +63,5 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
