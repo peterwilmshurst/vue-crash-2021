@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "A-Task",
+  name: "TaskComponent",
   props: {
     task: Object,
   },

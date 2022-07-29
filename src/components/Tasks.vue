@@ -13,7 +13,7 @@
 <script>
 import Task from "./Task";
 export default {
-  name: "The-Tasks",
+  name: "TasksComponent",
   props: {
     tasks: Array,
   },

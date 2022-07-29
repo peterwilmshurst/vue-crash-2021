@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: "AddTask",
+  name: "AddTaskComponent",
   data() {
     return {
       text: "",
